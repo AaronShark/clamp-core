@@ -21,7 +21,7 @@ It explicitly does not ship private user state:
 ## Quick Start
 
 ```bash
-git clone https://github.com/<your-account>/clamp-core.git
+git clone https://github.com/AaronShark/clamp-core.git
 cd clamp-core
 python3 install_clamp.py
 ```
