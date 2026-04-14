@@ -1,0 +1,19 @@
+{
+  "id": "theory-loop",
+  "version": "0.1.0",
+  "kind": "capability-pack",
+  "description": "Explicit theory-building notes for non-trivial engineering work.",
+  "dependencies": [
+    "../ContextRecall"
+  ],
+  "targets": [
+    {
+      "from": "src/tools/theory_loop.py",
+      "to": "~/.codex/tools/theory_loop.py"
+    }
+  ],
+  "verify": [
+    "\"{{PYTHON}}\" -m py_compile \"{{CODEX_HOME}}/tools/theory_loop.py\"",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/theory_loop.py\" list --limit 1 --json"
+  ]
+}

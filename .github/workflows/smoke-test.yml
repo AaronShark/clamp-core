@@ -1,0 +1,33 @@
+name: smoke-test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  smoke-test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Syntax check
+        run: python3 -m py_compile $(find . -name '*.py' -print)
+
+      - name: Dry-run install
+        run: python3 install_clamp.py --dry-run
+
+      - name: Isolated install smoke test
+        run: |
+          export HOME="$RUNNER_TEMP/clamp-core-home"
+          export CODEX_HOME="$HOME/.codex"
+          mkdir -p "$HOME"
+          python3 install_clamp.py

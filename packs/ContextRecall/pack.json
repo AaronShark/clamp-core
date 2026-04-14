@@ -1,0 +1,38 @@
+{
+  "id": "context-recall",
+  "version": "0.1.0",
+  "kind": "capability-pack",
+  "description": "Unified local recall index for sessions, canonical memories, and skills.",
+  "dependencies": [],
+  "targets": [
+    {
+      "from": "src/tools/retrospect_common.py",
+      "to": "~/.codex/tools/retrospect_common.py"
+    },
+    {
+      "from": "src/tools/recall_common.py",
+      "to": "~/.codex/tools/recall_common.py"
+    },
+    {
+      "from": "src/tools/recall_sync.py",
+      "to": "~/.codex/tools/recall_sync.py"
+    },
+    {
+      "from": "src/tools/recall_query.py",
+      "to": "~/.codex/tools/recall_query.py"
+    },
+    {
+      "from": "src/skills/clamp-core/SKILL.md",
+      "to": "~/.codex/skills/clamp-core/SKILL.md"
+    },
+    {
+      "from": "src/skills/clamp-maintenance/SKILL.md",
+      "to": "~/.codex/skills/clamp-maintenance/SKILL.md"
+    }
+  ],
+  "verify": [
+    "\"{{PYTHON}}\" -m py_compile \"{{CODEX_HOME}}/tools/retrospect_common.py\" \"{{CODEX_HOME}}/tools/recall_common.py\" \"{{CODEX_HOME}}/tools/recall_sync.py\" \"{{CODEX_HOME}}/tools/recall_query.py\"",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/recall_sync.py\"",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/recall_query.py\" --topic codex --format json"
+  ]
+}

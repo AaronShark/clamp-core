@@ -1,0 +1,27 @@
+{
+  "id": "quiet-context",
+  "version": "0.1.0",
+  "kind": "capability-pack",
+  "description": "Generated task briefs, focus briefs, and quiet daily context for CLAMP Core.",
+  "dependencies": [
+    "../ContextRecall",
+    "../TheoryLoop",
+    "../HotMemoryProjection",
+    "../CurationLoop"
+  ],
+  "targets": [
+    {
+      "from": "src/tools/platform_build_context.py",
+      "to": "~/.codex/tools/platform_build_context.py"
+    },
+    {
+      "from": "src/tools/quiet_context.py",
+      "to": "~/.codex/tools/quiet_context.py"
+    }
+  ],
+  "verify": [
+    "\"{{PYTHON}}\" -m py_compile \"{{CODEX_HOME}}/tools/platform_build_context.py\" \"{{CODEX_HOME}}/tools/quiet_context.py\"",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/platform_build_context.py\" --topic codex --force",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/quiet_context.py\""
+  ]
+}

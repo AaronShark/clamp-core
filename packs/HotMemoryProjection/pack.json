@@ -1,0 +1,24 @@
+{
+  "id": "hot-memory-projection",
+  "version": "0.1.0",
+  "kind": "capability-pack",
+  "description": "Bounded hot-context projection over canonical memory and user conclusions.",
+  "dependencies": [
+    "../ContextRecall"
+  ],
+  "targets": [
+    {
+      "from": "src/tools/user_conclusions.py",
+      "to": "~/.codex/tools/user_conclusions.py"
+    },
+    {
+      "from": "src/tools/hot_context.py",
+      "to": "~/.codex/tools/hot_context.py"
+    }
+  ],
+  "verify": [
+    "\"{{PYTHON}}\" -m py_compile \"{{CODEX_HOME}}/tools/user_conclusions.py\" \"{{CODEX_HOME}}/tools/hot_context.py\"",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/user_conclusions.py\" refresh",
+    "\"{{PYTHON}}\" \"{{CODEX_HOME}}/tools/hot_context.py\" --topic codex"
+  ]
+}
